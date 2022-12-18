@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UdemyProject3.Abstract.Input;
 using UdemyProject3.Abstract.Movements;
+using UdemyProject3.Animations;
 using UdemyProject3.Movements;
 using UnityEngine;
 
@@ -14,12 +15,14 @@ namespace UdemyProject3.Controller
 
         IInputReader _iInputReader;
         IMover _iMover;
+        CharacterAnimation _animations;
 
         Vector3 _direction;
         private void Awake()
         {
             _iInputReader= GetComponent<IInputReader>();
             _iMover = new MoveWithCharacterController(this);
+            _animations = new CharacterAnimation(this);
         }
 
         private void Update()

@@ -318,6 +318,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Robot Kyle
       objectReference: {fileID: 0}
+    - target: {fileID: 7550791917219810486, guid: 46f1f70357d5ee544be29f25ef6c8409, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4e17913464b16134ea0f722aa54055f9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46f1f70357d5ee544be29f25ef6c8409, type: 3}
 --- !u!4 &1083797120 stripped
