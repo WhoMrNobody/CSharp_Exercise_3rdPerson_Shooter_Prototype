@@ -9,11 +9,10 @@ namespace UdemyProject3.Movements
     public class MoveWithCharacterController : IMover
     {
         CharacterController _characterController;
-       
+
         public MoveWithCharacterController(PlayerController playerController)
         {
             _characterController = playerController.GetComponent<CharacterController>();
-           
         }
         public void MoveAction(Vector3 direction, float moveSpeed)
         {

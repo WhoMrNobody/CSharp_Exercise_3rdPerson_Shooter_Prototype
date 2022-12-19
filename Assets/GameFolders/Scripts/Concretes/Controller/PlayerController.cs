@@ -34,6 +34,11 @@ namespace UdemyProject3.Controller
         {
             _iMover.MoveAction(_direction, _moveSpeed);
         }
+
+        private void LateUpdate()
+        {
+            _animations.MoveAnimation(_direction.magnitude);
+        }
     }
 
 }

@@ -15,9 +15,11 @@ namespace UdemyProject3.Animations
             _animator= playerController.GetComponent<Animator>();
         }
 
-        public void MoveAnimations()
+        public void MoveAnimation(float moveSpeed)
         {
+            if(_animator.GetFloat("moveSpeed") == moveSpeed) { return; }
 
+            _animator.SetFloat("moveSpeed", moveSpeed, 0.1f, Time.deltaTime);
         }
     }
 
