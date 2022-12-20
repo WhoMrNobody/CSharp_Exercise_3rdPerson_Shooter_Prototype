@@ -12,27 +12,40 @@ namespace UdemyProject3.Controller
     {
         [Header("Movements Specs")]
         [SerializeField] float _moveSpeed = 10f;
+        [SerializeField] float _turnSpeed = 10f;
+        [SerializeField] Transform _turnTransform;
 
         IInputReader _iInputReader;
+        IRotator _xRotator, _yRotator;
         IMover _iMover;
         CharacterAnimation _animations;
 
+        public Transform TurnTransfor => _turnTransform;
+
         Vector3 _direction;
+        
         private void Awake()
         {
             _iInputReader= GetComponent<IInputReader>();
             _iMover = new MoveWithCharacterController(this);
             _animations = new CharacterAnimation(this);
+            _xRotator = new RotatorX(this);
+            _yRotator = new RotatorY(this);
         }
 
         private void Update()
         {
             _direction = _iInputReader.Direction;
+            
+            _xRotator.RotationAction(_iInputReader.Rotation.x, _turnSpeed);
+            _yRotator.RotationAction(_iInputReader.Rotation.y, _turnSpeed);
         }
 
         private void FixedUpdate()
         {
             _iMover.MoveAction(_direction, _moveSpeed);
+            
+
         }
 
         private void LateUpdate()
