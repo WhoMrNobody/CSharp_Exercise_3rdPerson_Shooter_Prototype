@@ -41,6 +41,7 @@ namespace UdemyProject3.Controller
             _xRotator.RotationAction(_iInputReader.Rotation.x, _turnSpeed);
             _yRotator.RotationAction(_iInputReader.Rotation.y, _turnSpeed);
 
+
             if (_iInputReader.IsAttackPressed)
             {
                 currentWeaponController.CanAttack();

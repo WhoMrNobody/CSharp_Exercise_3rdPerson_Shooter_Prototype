@@ -104,7 +104,7 @@
                     "name": "",
                     "id": "eac906ce-8870-487f-a7e2-e0a1b563bba7",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Fire",

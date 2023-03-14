@@ -734,12 +734,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canFire: 0
-  attackMaxDelay: 0
+  attackMaxDelay: 1
   camera: {fileID: 1561934143}
-  weaponRange: 0
+  weaponRange: 100
   layerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 2147483647
 --- !u!1 &1561934141
 GameObject:
   m_ObjectHideFlags: 0

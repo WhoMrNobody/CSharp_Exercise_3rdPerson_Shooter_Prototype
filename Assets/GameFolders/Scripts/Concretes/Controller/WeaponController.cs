@@ -7,16 +7,17 @@ namespace UdemyProject3.Controller
     public class WeaponController : MonoBehaviour
     {
         [SerializeField] bool canFire;
-        [SerializeField] float attackMaxDelay;
+        [SerializeField] float attackMaxDelay = 2.5f;
         [SerializeField] Camera camera;
-        [SerializeField] float weaponRange;
+        [SerializeField] float weaponRange = 100f;
         [SerializeField] LayerMask layerMask;
 
         float _currentTime = 0f;
         // Update is called once per frame
         void Update()
         {
-            _currentTime = +Time.deltaTime;
+            _currentTime += Time.deltaTime;
+
             canFire = _currentTime > attackMaxDelay;
 
         }
