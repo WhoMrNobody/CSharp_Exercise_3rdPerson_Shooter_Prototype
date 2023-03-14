@@ -14,6 +14,7 @@ namespace UdemyProject3.Controller
         [SerializeField] float _moveSpeed = 10f;
         [SerializeField] float _turnSpeed = 10f;
         [SerializeField] Transform _turnTransform;
+        [SerializeField] WeaponController currentWeaponController;
 
         IInputReader _iInputReader;
         IRotator _xRotator, _yRotator;
@@ -39,6 +40,11 @@ namespace UdemyProject3.Controller
             
             _xRotator.RotationAction(_iInputReader.Rotation.x, _turnSpeed);
             _yRotator.RotationAction(_iInputReader.Rotation.y, _turnSpeed);
+
+            if (_iInputReader.IsAttackPressed)
+            {
+                currentWeaponController.CanAttack();
+            }
         }
 
         private void FixedUpdate()

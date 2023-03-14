@@ -12,6 +12,8 @@ namespace UdemyProject3.Input
 
         public Vector2 Rotation { get; private set; }
 
+        public bool IsAttackPressed { get; private set; }
+
         public void OnMove(InputAction.CallbackContext context)
         {
             Vector2 oldDirection = context.ReadValue<Vector2>();
@@ -23,6 +25,11 @@ namespace UdemyProject3.Input
         public void OnRotator(InputAction.CallbackContext context) 
         {
             Rotation= context.ReadValue<Vector2>();
+        }
+
+        public void OnAttack(InputAction.CallbackContext context)
+        {
+            IsAttackPressed = context.ReadValueAsButton();
         }
 
     }
