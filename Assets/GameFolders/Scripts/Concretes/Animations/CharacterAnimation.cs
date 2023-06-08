@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UdemyProject3.Controller;
+using UdemyProject3.Abstract.Controllers;
 using UnityEngine;
 
 
@@ -10,9 +11,9 @@ namespace UdemyProject3.Animations
     {
         Animator _animator;
 
-        public CharacterAnimation(PlayerController playerController)
+        public CharacterAnimation(IEntityController entityController)
         {
-            _animator= playerController.GetComponent<Animator>();
+            _animator= entityController.transform.GetComponentInChildren<Animator>();
         }
 
         public void MoveAnimation(float moveSpeed)
