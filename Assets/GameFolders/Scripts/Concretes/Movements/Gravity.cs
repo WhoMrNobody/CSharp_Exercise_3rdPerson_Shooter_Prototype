@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace UdemyProject3.Movements
 {
+    [RequireComponent(typeof(CharacterController))]
     public class Gravity : MonoBehaviour
     {
 
