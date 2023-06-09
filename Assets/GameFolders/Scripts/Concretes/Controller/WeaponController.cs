@@ -1,37 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using UdemyProject3.Abstract.Combat;
+using UdemyProject3.Abstract.Controllers;
+using UdemyProject3.Combats;
+using UdemyProject3.ScritableObject;
 using UnityEngine;
 
 namespace UdemyProject3.Controller
 {
     public class WeaponController : MonoBehaviour
     {
-        [SerializeField] bool canFire;
-        [SerializeField] float attackMaxDelay = 2.5f;
-        [SerializeField] Camera camera;
-        [SerializeField] float weaponRange = 100f;
-        [SerializeField] LayerMask layerMask;
+        
+        [SerializeField] bool _canFire;
+        [SerializeField] Transform _transformObject;
+        [SerializeField] AttackSO _attackSO;
 
         float _currentTime = 0f;
-        // Update is called once per frame
+        IAttackType _attackType;
+
+        void Awake()
+        {
+            _attackType = new RangeAttackType(_transformObject.transform, _attackSO);
+        }
         void Update()
         {
             _currentTime += Time.deltaTime;
 
-            canFire = _currentTime > attackMaxDelay;
+            _canFire = _currentTime > _attackSO.AttackMaxDelay;
 
         }
 
         public void CanAttack()
         {
-            if(!canFire) { return;  }
+            if(!_canFire) { return;  }
 
-            Ray ray = camera.ViewportPointToRay(Vector3.one / 2);
-
-            if(Physics.Raycast(ray, out RaycastHit _hit, weaponRange, layerMask))
-            {
-                Debug.Log(_hit.collider.gameObject.name);
-            }
+            _attackType.AttackAction();
 
             _currentTime = 0f;
         }
