@@ -20,7 +20,7 @@ namespace UdemyProject3.Controller
 
         void Awake()
         {
-            _attackType = new RangeAttackType(_transformObject.transform, _attackSO);
+            _attackType = _attackSO.GetAttackType(_transformObject);
         }
         void Update()
         {
