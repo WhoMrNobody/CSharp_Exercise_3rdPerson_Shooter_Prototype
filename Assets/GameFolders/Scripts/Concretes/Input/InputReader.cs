@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UdemyProject3.Abstract.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 namespace UdemyProject3.Input
 {
@@ -14,6 +16,9 @@ namespace UdemyProject3.Input
 
         public bool IsAttackPressed { get; private set; }
 
+        public bool isInventoryButtonPressed { get; private set; }
+
+        int _index;
         public void OnMove(InputAction.CallbackContext context)
         {
             Vector2 oldDirection = context.ReadValue<Vector2>();
@@ -32,6 +37,21 @@ namespace UdemyProject3.Input
             IsAttackPressed = context.ReadValueAsButton();
         }
 
+        public void OnInventoryPressed(InputAction.CallbackContext context)
+        {
+            if(isInventoryButtonPressed && context.action.triggered) { return; }
+
+            StartCoroutine(WaitOnFrameAsync());
+        }
+
+        IEnumerator WaitOnFrameAsync()
+        {
+            isInventoryButtonPressed = true && _index % 2 == 0;
+            yield return new WaitForEndOfFrame();
+            isInventoryButtonPressed = false;
+
+            _index++;
+        }
     }
 }
 

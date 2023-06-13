@@ -9,5 +9,6 @@ namespace UdemyProject3.Abstract.Input
         Vector3 Direction { get; }
         Vector2 Rotation { get; }
         bool IsAttackPressed { get; }
+        bool isInventoryButtonPressed { get; }
     }
 }

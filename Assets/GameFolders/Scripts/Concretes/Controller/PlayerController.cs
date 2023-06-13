@@ -15,20 +15,19 @@ namespace UdemyProject3.Controller
         [SerializeField] float _moveSpeed = 10f;
         [SerializeField] float _turnSpeed = 10f;
         [SerializeField] Transform _turnTransform;
-        [SerializeField] WeaponController currentWeaponController;
+
+        public Transform TurnTransfor => _turnTransform;
 
         IInputReader _iInputReader;
         IRotator _xRotator, _yRotator;
         IMover _iMover;
         CharacterAnimation _animations;
-
-        public Transform TurnTransfor => _turnTransform;
-
         Vector3 _direction;
-        
+        InventoryController _inventoryController;
         private void Awake()
         {
             _iInputReader= GetComponent<IInputReader>();
+            _inventoryController = GetComponent<InventoryController>();
             _iMover = new MoveWithCharacterController(this);
             _animations = new CharacterAnimation(this);
             _xRotator = new RotatorX(this);
@@ -45,7 +44,12 @@ namespace UdemyProject3.Controller
 
             if (_iInputReader.IsAttackPressed)
             {
-                currentWeaponController.CanAttack();
+                _inventoryController.CurrentWeapon.CanAttack();
+            }
+
+            if(_iInputReader.isInventoryButtonPressed)
+            {
+                _inventoryController.ChangeWeapon();
             }
         }
 

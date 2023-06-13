@@ -18,6 +18,8 @@ namespace UdemyProject3.Controller
         float _currentTime = 0f;
         IAttackType _attackType;
 
+        public AttackSO attackSO => _attackSO;
+
         void Awake()
         {
             _attackType = _attackSO.GetAttackType(_transformObject);
