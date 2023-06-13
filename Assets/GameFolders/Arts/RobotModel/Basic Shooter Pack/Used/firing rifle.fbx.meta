@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 1cd8034ac5f72a941bf5237586951209
+guid: 26e963a423a8ca0458ad2447c148068d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: RifleIdle
+    second: IdleRifleFiring
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,13 +36,13 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: RifleIdle
+      name: IdleRifleFiring
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 319
+      lastFrame: 8
       wrapMode: 0
-      orientationOffsetY: 0
+      orientationOffsetY: -43.9
       level: 0
       cycleOffset: 0
       loop: 0
@@ -54,7 +54,7 @@ ModelImporter:
       loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -75,8 +75,8 @@ ModelImporter:
     importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 0
-    importLights: 0
+    importCameras: 1
+    importLights: 1
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
