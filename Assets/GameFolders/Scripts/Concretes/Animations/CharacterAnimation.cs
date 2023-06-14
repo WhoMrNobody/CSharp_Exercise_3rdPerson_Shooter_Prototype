@@ -22,6 +22,11 @@ namespace UdemyProject3.Animations
 
             _animator.SetFloat("moveSpeed", moveSpeed, 0.1f, Time.deltaTime);
         }
+
+        public void AttackAnimation(bool isAttacking)
+        {
+            _animator.SetBool("isAttacking", isAttacking);
+        }
     }
 
 }

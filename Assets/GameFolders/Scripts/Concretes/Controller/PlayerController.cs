@@ -63,6 +63,7 @@ namespace UdemyProject3.Controller
         private void LateUpdate()
         {
             _animations.MoveAnimation(_direction.magnitude);
+            _animations.AttackAnimation(_iInputReader.IsAttackPressed);
         }
     }
 
