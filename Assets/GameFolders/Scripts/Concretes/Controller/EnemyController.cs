@@ -13,19 +13,18 @@ namespace UdemyProject3.Controller
 {
     public class EnemyController : MonoBehaviour, IEntityController
     {
-        IMover _mover;
         IHealth _iHealth;
         CharacterAnimation _characterAnimation;
         NavMeshAgent _navMeshAgent;
         InventoryController _inventoryController;
         Transform _playerTransform;
-        //bool _canAttack;
         StateMachines _stateMachines;
 
+        public IMover Mover { get; private set; }
         public bool CanAttack => Vector3.Distance(_playerTransform.position, this.transform.position) <= _navMeshAgent.stoppingDistance && _navMeshAgent.velocity == Vector3.zero;
         void Awake()
         {
-            _mover = new MoveWithNavMesh(this);
+            Mover = new MoveWithNavMesh(this);
             _characterAnimation = new CharacterAnimation(this);
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _inventoryController = GetComponent<InventoryController>();
@@ -38,7 +37,7 @@ namespace UdemyProject3.Controller
             _playerTransform = FindObjectOfType<PlayerController>().transform;
 
             AttackState attackState = new AttackState();
-            ChaseState chaseState = new ChaseState();
+            ChaseState chaseState = new ChaseState(this,_playerTransform);
             DeadState deadState = new DeadState();
 
             _stateMachines.AddState(chaseState, attackState, () => CanAttack);
@@ -52,8 +51,6 @@ namespace UdemyProject3.Controller
         void Update()
         {   
             if(_iHealth.IsDead) return;
-
-            _mover.MoveAction(_playerTransform.position, 10f);
 
             _stateMachines.Tick();
         }
