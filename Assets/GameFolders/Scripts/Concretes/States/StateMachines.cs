@@ -24,8 +24,6 @@ public class StateMachines
 
     }
 
-    //TODO
-    // Tick içerisinde state değişimleri kontrol edilecek metodu ya da algoritma yazılacak
     public void Tick()
     {
         StateTransformer stateTransformer = CheckForTransformer();

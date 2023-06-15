@@ -477,7 +477,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/GameFolders/Scripts/Concretes/States
+    - Assets/GameFolders/Scripts/Concretes/States/EnemyStates
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -485,16 +485,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/GameFolders/Scripts/Concretes/States
+  - Assets/GameFolders/Scripts/Concretes/States/EnemyStates
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\e.hun\Documents\GitHub\CSharp_Exercise_3rdPerson_Shooter_Prototype
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 91}
+    scrollPos: {x: 0, y: 94}
     m_SelectedIDs: 42670000
     m_LastClickedID: 26434
-    m_ExpandedIDs: 0000000078660000ea66000020670000226700002a67000000ca9a3bffffff7f
+    m_ExpandedIDs: 000000007e660000f06600002467000026670000286700003067000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -522,7 +522,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000078660000
+    m_ExpandedIDs: 000000007e660000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

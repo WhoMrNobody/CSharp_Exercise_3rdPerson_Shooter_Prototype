@@ -5,6 +5,7 @@ using UdemyProject3.Abstract.Controllers;
 using UdemyProject3.Abstract.Movements;
 using UdemyProject3.Animations;
 using UdemyProject3.Movements;
+using UdemyProject3.States.EnemyStates;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -18,7 +19,10 @@ namespace UdemyProject3.Controller
         NavMeshAgent _navMeshAgent;
         InventoryController _inventoryController;
         Transform _playerTransform;
-        bool _canAttack;
+        //bool _canAttack;
+        StateMachines _stateMachines;
+
+        public bool CanAttack => Vector3.Distance(_playerTransform.position, this.transform.position) <= _navMeshAgent.stoppingDistance && _navMeshAgent.velocity == Vector3.zero;
         void Awake()
         {
             _mover = new MoveWithNavMesh(this);
@@ -26,11 +30,22 @@ namespace UdemyProject3.Controller
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _inventoryController = GetComponent<InventoryController>();
             _iHealth = GetComponent<IHealth>();
+            _stateMachines = new StateMachines();
         }
 
         void Start()
         {
             _playerTransform = FindObjectOfType<PlayerController>().transform;
+
+            AttackState attackState = new AttackState();
+            ChaseState chaseState = new ChaseState();
+            DeadState deadState = new DeadState();
+
+            _stateMachines.AddState(chaseState, attackState, () => CanAttack);
+            _stateMachines.AddState(attackState, chaseState, () => !CanAttack);
+            _stateMachines.AddAnyState(deadState, () => _iHealth.IsDead);
+
+            _stateMachines.SetState(chaseState);
         }
 
 
@@ -40,12 +55,12 @@ namespace UdemyProject3.Controller
 
             _mover.MoveAction(_playerTransform.position, 10f);
 
-            _canAttack = Vector3.Distance(_playerTransform.position, this.transform.position) <= _navMeshAgent.stoppingDistance && _navMeshAgent.velocity == Vector3.zero;
+            _stateMachines.Tick();
         }
 
         void FixedUpdate()
         {
-            if(_canAttack) {
+            if(CanAttack) {
 
                 _inventoryController.CurrentWeapon.CanAttack();
             }
@@ -54,7 +69,7 @@ namespace UdemyProject3.Controller
         void LateUpdate()
         {
             _characterAnimation.MoveAnimation(_navMeshAgent.velocity.magnitude);
-            _characterAnimation.AttackAnimation(_canAttack);
+            _characterAnimation.AttackAnimation(CanAttack);
         }
     }
 }
