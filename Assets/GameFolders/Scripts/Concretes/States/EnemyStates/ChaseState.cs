@@ -21,7 +21,7 @@ namespace UdemyProject3.States.EnemyStates
 
         public void OnExit()
         {
-
+            _enemyController.Mover.MoveAction(_enemyController.transform.position, 0f);
         }
 
         public void Tick()

@@ -4,6 +4,7 @@ using UdemyProject3.Abstract.Combat;
 using UdemyProject3.Abstract.Controllers;
 using UdemyProject3.Abstract.Movements;
 using UdemyProject3.Animations;
+using UdemyProject3.Combats;
 using UdemyProject3.Movements;
 using UdemyProject3.States.EnemyStates;
 using UnityEngine;
@@ -26,12 +27,15 @@ namespace UdemyProject3.Controller
 
         public float Magnitude => _navMeshAgent.velocity.magnitude;
 
+        public Dead Dead { get; private set; }
+
         void Awake()
         {
             Mover = new MoveWithNavMesh(this);
             CharacterAnimation = new CharacterAnimation(this);
             _navMeshAgent = GetComponent<NavMeshAgent>();
             InventoryController = GetComponent<InventoryController>();
+            Dead = GetComponent<Dead>();
             _iHealth = GetComponent<IHealth>();
             _stateMachines = new StateMachines();
         }
@@ -43,6 +47,7 @@ namespace UdemyProject3.Controller
             AttackState attackState = new AttackState(this);
             ChaseState chaseState = new ChaseState(this);
             DeadState deadState = new DeadState(this);
+            
 
             _stateMachines.AddState(chaseState, attackState, () => CanAttack);
             _stateMachines.AddState(attackState, chaseState, () => !CanAttack);

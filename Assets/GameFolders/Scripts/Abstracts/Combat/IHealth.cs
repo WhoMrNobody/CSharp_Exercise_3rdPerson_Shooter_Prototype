@@ -8,6 +8,8 @@ namespace UdemyProject3.Abstract.Combat
     {
         bool IsDead { get; }
         void TakeDamage(int damage);
+
+        event System.Action OnDead;
     }
 }
 

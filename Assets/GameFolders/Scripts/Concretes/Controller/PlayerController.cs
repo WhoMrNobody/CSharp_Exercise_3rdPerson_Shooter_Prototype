@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UdemyProject3.Abstract.Combat;
 using UdemyProject3.Abstract.Controllers;
 using UdemyProject3.Abstract.Input;
 using UdemyProject3.Abstract.Movements;
@@ -21,6 +22,7 @@ namespace UdemyProject3.Controller
         IInputReader _iInputReader;
         IRotator _xRotator, _yRotator;
         IMover _mover;
+        IHealth _health;
         CharacterAnimation _animations;
         Vector3 _direction;
         InventoryController _inventoryController;
@@ -28,14 +30,22 @@ namespace UdemyProject3.Controller
         {
             _iInputReader= GetComponent<IInputReader>();
             _inventoryController = GetComponent<InventoryController>();
+            _health = GetComponent<IHealth>();
             _mover = new MoveWithCharacterController(this);
             _animations = new CharacterAnimation(this);
             _xRotator = new RotatorX(this);
             _yRotator = new RotatorY(this);
         }
 
-        private void Update()
+        void OnEnable()
         {
+            _health.OnDead += () => _animations.DeadAnimation("isDying");
+        }
+
+        private void Update()
+        {   
+            if(_health.IsDead) return;
+
             _direction = _iInputReader.Direction;
             
             _xRotator.RotationAction(_iInputReader.Rotation.x, _turnSpeed);
@@ -54,14 +64,17 @@ namespace UdemyProject3.Controller
         }
 
         private void FixedUpdate()
-        {
+        {   
+            if(_health.IsDead) return;
+
             _mover.MoveAction(_direction, _moveSpeed);
             
-
         }
 
         private void LateUpdate()
-        {
+        {   
+            if(_health.IsDead) return;
+
             _animations.MoveAnimation(_direction.magnitude);
             _animations.AttackAnimation(_iInputReader.IsAttackPressed);
         }

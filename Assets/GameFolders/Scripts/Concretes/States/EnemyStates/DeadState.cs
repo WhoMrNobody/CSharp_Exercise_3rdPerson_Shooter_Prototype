@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UdemyProject3.Abstract.Controllers;
 using UdemyProject3.Abstract.States;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace UdemyProject3.States.EnemyStates
 {
@@ -17,7 +18,9 @@ namespace UdemyProject3.States.EnemyStates
         }
         public void OnEnter()
         {
-
+            _enemyController.Dead.DeadAction();
+            _enemyController.CharacterAnimation.DeadAnimation("isDying");
+            _enemyController.transform.GetComponent<CapsuleCollider>().enabled = false;
         }
 
         public void OnExit()
@@ -27,22 +30,17 @@ namespace UdemyProject3.States.EnemyStates
 
         public void Tick()
         {
-            _currentTime += Time.deltaTime;
-
-            if(_currentTime > _maxTime)
-            {
-                GameObject.Destroy(_enemyController.transform.gameObject);
-            }
+            return;
         }
 
         public void TickFixed()
         {
-           
+            return;
         }
 
         public void TickLate()
         {
-            
+            return;
         }
     }
 }

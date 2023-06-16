@@ -27,6 +27,11 @@ namespace UdemyProject3.Animations
         {
             _animator.SetBool("isAttacking", isAttacking);
         }
+
+        public void DeadAnimation(string animationParameter)
+        {
+            _animator.SetTrigger(animationParameter);
+        }
     }
 
 }

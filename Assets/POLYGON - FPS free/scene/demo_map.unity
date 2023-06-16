@@ -135,8 +135,10 @@ GameObject:
   - component: {fileID: 637997393}
   - component: {fileID: 637997392}
   - component: {fileID: 637997395}
+  - component: {fileID: 637997398}
   - component: {fileID: 637997396}
   - component: {fileID: 637997397}
+  - component: {fileID: 637997399}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -241,23 +243,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponControllers: []
---- !u!1 &775031913 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5389143176126137837, guid: 755460473c67ee547a1bee094dce4b14, type: 3}
-  m_PrefabInstance: {fileID: 5389143174382382505}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &775031917
+--- !u!114 &637997398
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 775031913}
+  m_GameObject: {fileID: 637997390}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75a53747109b8844e9faaa4572467245, type: 3}
+  m_Script: {fileID: 11500000, guid: 585df76be30aaa041b424f47f7f6bc7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _delayTime: 5
+--- !u!136 &637997399
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637997390}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.21783477
+  m_Height: 2.0463543
+  m_Direction: 1
+  m_Center: {x: -0.016345978, y: 0.74062777, z: 0}
 --- !u!1 &1035211255
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,10 +765,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5389143176126137837, guid: 755460473c67ee547a1bee094dce4b14, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 775031917}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 755460473c67ee547a1bee094dce4b14, type: 3}
 --- !u!1001 &5564445858612923401
 PrefabInstance:
