@@ -27,7 +27,9 @@ namespace UdemyProject3.States.EnemyStates
 
         public void Tick()
         {
-            
+            _enemyController.transform.LookAt(_enemyController.Target);
+            _enemyController.transform.eulerAngles = new Vector3(0f, _enemyController.transform.eulerAngles.y, 0f);
+ 
         }
 
         public void TickFixed()
