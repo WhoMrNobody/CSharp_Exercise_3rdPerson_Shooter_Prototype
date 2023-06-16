@@ -36,6 +36,17 @@ public class StateMachines
         _currentState.Tick();
     }
 
+    public void TickFixed()
+    {
+        _currentState.TickFixed();
+    }
+
+    public void TickLate()
+    {
+        _currentState.TickLate();
+    }
+
+
     private StateTransformer CheckForTransformer()
     {
         foreach (StateTransformer anyStateTransformer in _anyStateTransformers)
@@ -63,4 +74,5 @@ public class StateMachines
         StateTransformer stateTransformer = new StateTransformer(null, to, condition);
         _stateTransformers.Add(stateTransformer);
     }
+
 }

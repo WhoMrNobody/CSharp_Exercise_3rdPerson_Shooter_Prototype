@@ -9,12 +9,10 @@ namespace UdemyProject3.States.EnemyStates
     public class ChaseState : IState
     {
         float _speed = 10f;
-        Transform _target;
-        IEntityController _entityController;
-        public ChaseState(IEntityController entityController, Transform target)
+        IEnemyController _enemyController;
+        public ChaseState(IEnemyController enemyController)
         {   
-            _entityController = entityController;
-            _target = target;
+            _enemyController = enemyController;
         }
         public void OnEnter()
         {
@@ -28,7 +26,17 @@ namespace UdemyProject3.States.EnemyStates
 
         public void Tick()
         {
-            _entityController.Mover.MoveAction(_target.position, _speed);
+            _enemyController.Mover.MoveAction(_enemyController.Target.position, _speed);
+        }
+
+        public void TickFixed()
+        {
+           
+        }
+
+        public void TickLate()
+        {
+            _enemyController.CharacterAnimation.MoveAnimation(_enemyController.Magnitude);
         }
     }
 }

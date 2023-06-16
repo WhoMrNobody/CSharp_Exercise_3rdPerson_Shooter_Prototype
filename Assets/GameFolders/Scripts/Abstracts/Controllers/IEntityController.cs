@@ -6,7 +6,7 @@ namespace UdemyProject3.Abstract.Controllers
     public interface IEntityController 
     {
         public Transform transform { get; }
-        IMover Mover { get; }
+
     }
 }
 
