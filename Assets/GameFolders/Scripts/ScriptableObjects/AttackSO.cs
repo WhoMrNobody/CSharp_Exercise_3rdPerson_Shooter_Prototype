@@ -11,7 +11,7 @@ namespace UdemyProject3.ScritableObject
         Range, Melee
     }
 
-    [CreateAssetMenu(fileName ="Attack Info", menuName = "Create new Attack Info", order = 51)]
+    [CreateAssetMenu(fileName ="Attack Info", menuName = "Combat/Attack Info/Create New", order = 51)]
     public class AttackSO : ScriptableObject
     {
         [SerializeField] AttackTypeEnum _attackType;
