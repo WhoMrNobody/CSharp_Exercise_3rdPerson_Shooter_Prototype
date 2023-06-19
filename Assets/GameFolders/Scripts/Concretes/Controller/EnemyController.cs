@@ -5,6 +5,7 @@ using UdemyProject3.Abstract.Controllers;
 using UdemyProject3.Abstract.Movements;
 using UdemyProject3.Animations;
 using UdemyProject3.Combats;
+using UdemyProject3.Managers;
 using UdemyProject3.Movements;
 using UdemyProject3.States.EnemyStates;
 using UnityEngine;
@@ -72,6 +73,11 @@ namespace UdemyProject3.Controller
         void LateUpdate()
         {
             _stateMachines.TickLate();
+        }
+
+        void OnDestroy()
+        {
+            EnemyManager.Instance.RemoveEnemyController(this);
         }
     }
 
