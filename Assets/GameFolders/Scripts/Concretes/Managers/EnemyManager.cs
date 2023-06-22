@@ -12,7 +12,7 @@ namespace UdemyProject3.Managers
         [SerializeField] List<EnemyController> _enemies;
 
         public bool CanSpawn => _maxCountGameOn > _enemies.Count;
-
+        public bool IsEnemyListEmpty => _enemies.Count <= 0;
         private void Awake()
         {
             SetSingletonThisGameObject(this);
