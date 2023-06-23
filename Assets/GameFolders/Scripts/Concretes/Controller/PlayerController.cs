@@ -5,6 +5,7 @@ using UdemyProject3.Abstract.Controllers;
 using UdemyProject3.Abstract.Input;
 using UdemyProject3.Abstract.Movements;
 using UdemyProject3.Animations;
+using UdemyProject3.Managers;
 using UdemyProject3.Movements;
 using UnityEngine;
 
@@ -40,6 +41,12 @@ namespace UdemyProject3.Controller
         void OnEnable()
         {
             _health.OnDead += () => _animations.DeadAnimation("isDying");
+            EnemyManager.Instance.Targets.Add(this.transform);
+        }
+
+        void OnDisable()
+        {
+            EnemyManager.Instance.Targets.Remove(this.transform);
         }
 
         private void Update()

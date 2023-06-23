@@ -35,6 +35,7 @@ namespace UdemyProject3.States.EnemyStates
         public void TickFixed()
         {
             _enemyController.InventoryController.CurrentWeapon.CanAttack();
+            _enemyController.FindNearestTarget();
         }
 
         public void TickLate()

@@ -14,6 +14,7 @@ namespace UdemyProject3.Abstract.Controllers
         public Dead Dead { get;}
         Transform Target { get; set; }
         float Magnitude { get;  }
+        void FindNearestTarget();
     }
 }
 
