@@ -8,10 +8,13 @@ namespace UdemyProject3.Managers
 {
     public class GameManager : SingletonMonoBehaviour<GameManager>
     {
+        [SerializeField] int _waveLevel = 1;
         [SerializeField] float _nextWaveBeginnerSecond = 10f;
         [SerializeField] float _waveMultiple = 1.5f;
         [SerializeField] int _maxWaveCount = 30;
         public bool IsWaveFinished => _currentWaveCount <= 0;
+
+        public System.Action<int> OnNextWave;
 
         int _currentWaveCount;
 
@@ -54,6 +57,8 @@ namespace UdemyProject3.Managers
             yield return new WaitForSeconds(_nextWaveBeginnerSecond);
             _maxWaveCount = System.Convert.ToInt32(_maxWaveCount * _waveMultiple);
             _currentWaveCount = _maxWaveCount;
+            _waveLevel++;
+            OnNextWave?.Invoke(_waveLevel);
         }
     }
 }
