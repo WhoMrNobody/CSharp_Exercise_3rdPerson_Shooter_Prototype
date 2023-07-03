@@ -20,12 +20,14 @@ namespace UdemyProject3.ScritableObject
         [SerializeField] int _damage = 10;
         [SerializeField] LayerMask _layerMask;
         [SerializeField] AnimatorOverrideController _animOverrideController;
+        [SerializeField] AudioClip _audioClip;
 
         public float WeaponRange => _weaponRange;
         public LayerMask LayerMask => _layerMask;
         public float AttackMaxDelay => _attackMaxDelay;
         public int Damage  => _damage;
         public AnimatorOverrideController AnimOverrideController => _animOverrideController;
+        public AudioClip AudioClip => _audioClip;
 
         public IAttackType GetAttackType(Transform transform)
         {

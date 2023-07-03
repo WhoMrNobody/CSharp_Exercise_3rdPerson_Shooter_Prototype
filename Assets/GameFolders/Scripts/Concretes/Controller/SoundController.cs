@@ -25,7 +25,6 @@ namespace UdemyProject3.Controller
             transform.position = position;  
             _audioSource.Play();
         }
-
         
     }
 }

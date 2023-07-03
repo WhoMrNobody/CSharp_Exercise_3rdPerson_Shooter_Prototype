@@ -8,8 +8,10 @@ namespace UdemyProject3.Managers
 {
     public class SoundManager : SingletonMonoBehaviour<SoundManager>
     {
-        [SerializeField] AudioClip[] _audioClips;
+        [SerializeField] AudioClip _audioClip;
         SoundController[] _soundControllers;
+
+        public SoundController[] SoundControllers => _soundControllers;
         void Awake()
         {
             SetSingletonThisGameObject(this);
@@ -18,17 +20,18 @@ namespace UdemyProject3.Managers
 
         void Start()
         {
-            for (int i = 0; i < _soundControllers.Length; i++)
-            {
-                _soundControllers[i].SetClip(_audioClips[i]);
-            }
-
+            _soundControllers[0].SetClip(_audioClip);
             _soundControllers[0].PlaySound(Vector3.zero);
         }
 
-        public void PlayFireSound(Vector3 soundPlayLocation)
+        public void RangeAttackSound(Vector3 soundPlayLocation)
         {
             _soundControllers[1].PlaySound(soundPlayLocation);
+        }
+
+        public void MeleeAttackSound(Vector3 soundPlayLocation)
+        {
+            _soundControllers[2].PlaySound(soundPlayLocation);
         }
     }
 

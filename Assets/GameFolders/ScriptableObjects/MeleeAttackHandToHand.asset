@@ -20,3 +20,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   _animOverrideController: {fileID: 0}
+  _audioClip: {fileID: 8300000, guid: 2ad76c0d8d0a83b459a2dd01d25ffa6a, type: 3}

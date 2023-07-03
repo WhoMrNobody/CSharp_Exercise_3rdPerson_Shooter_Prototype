@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UdemyProject3.Abstract.Combat;
 using UdemyProject3.Abstract.Controllers;
+using UdemyProject3.Managers;
 using UdemyProject3.ScritableObject;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ namespace UdemyProject3.Combats
         {
             _transformObject = transformObject;
             _attackSO = attackSO;
+            SoundManager.Instance.SoundControllers[2].SetClip(_attackSO.AudioClip);
         }
         public void AttackAction()
         {
@@ -29,6 +31,8 @@ namespace UdemyProject3.Combats
                     iHealth.TakeDamage(_attackSO.Damage);
                 }
             }
+
+            SoundManager.Instance.MeleeAttackSound(_transformObject.position);
         }
 
     }
