@@ -18,15 +18,17 @@ namespace UdemyProject3.Managers
 
         void Start()
         {
-            _soundControllers[0].SetClip(_audioClips[0]);
-            _soundControllers[1].SetClip(_audioClips[1]);
+            for (int i = 0; i < _soundControllers.Length; i++)
+            {
+                _soundControllers[i].SetClip(_audioClips[i]);
+            }
 
-            _soundControllers[0].PlaySound();
+            _soundControllers[0].PlaySound(Vector3.zero);
         }
 
         public void PlayFireSound(Vector3 soundPlayLocation)
         {
-            _soundControllers[1].SetClip(_audioClips[1]);
+            _soundControllers[1].PlaySound(soundPlayLocation);
         }
     }
 

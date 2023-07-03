@@ -18,10 +18,15 @@ namespace UdemyProject3.Controller
             _audioSource.clip = clip;
         }
 
-        public void PlaySound()
+        public void PlaySound(Vector3 position)
         {
+            if (_audioSource.isPlaying) return;
+
+            transform.position = position;  
             _audioSource.Play();
         }
+
+        
     }
 }
 
