@@ -17,15 +17,18 @@ namespace UdemyProject3.Controller
         [SerializeField] float _moveSpeed = 10f;
         [SerializeField] float _turnSpeed = 10f;
         [SerializeField] Transform _turnTransform;
+        [SerializeField] Transform _ribTransform;
 
         public Transform TurnTransfor => _turnTransform;
 
         IInputReader _iInputReader;
         IRotator _xRotator, _yRotator;
+        IRotator _ribRotator;
         IMover _mover;
         IHealth _health;
         CharacterAnimation _animations;
         Vector3 _direction;
+        Vector3 _rotation;
         InventoryController _inventoryController;
         private void Awake()
         {
@@ -33,6 +36,7 @@ namespace UdemyProject3.Controller
             _inventoryController = GetComponent<InventoryController>();
             _health = GetComponent<IHealth>();
             _mover = new MoveWithCharacterController(this);
+            _ribRotator = new RibRotator(_ribTransform);
             _animations = new CharacterAnimation(this);
             _xRotator = new RotatorX(this);
             _yRotator = new RotatorY(this);
@@ -54,9 +58,10 @@ namespace UdemyProject3.Controller
             if(_health.IsDead) return;
 
             _direction = _iInputReader.Direction;
+            _rotation = _iInputReader.Rotation;
             
-            _xRotator.RotationAction(_iInputReader.Rotation.x, _turnSpeed);
-            _yRotator.RotationAction(_iInputReader.Rotation.y, _turnSpeed);
+            _xRotator.RotationAction(_rotation.x, _turnSpeed);
+            _yRotator.RotationAction(_rotation.y, _turnSpeed);
 
 
             if (_iInputReader.IsAttackPressed)
@@ -84,6 +89,8 @@ namespace UdemyProject3.Controller
 
             _animations.MoveAnimation(_direction.magnitude);
             _animations.AttackAnimation(_iInputReader.IsAttackPressed);
+
+            //_ribRotator.RotationAction(_rotation.y * -1, _turnSpeed);
         }
     }
 
