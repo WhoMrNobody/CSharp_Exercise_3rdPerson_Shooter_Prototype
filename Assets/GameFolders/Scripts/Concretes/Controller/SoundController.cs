@@ -7,7 +7,8 @@ namespace UdemyProject3.Controller
     public class SoundController : MonoBehaviour
     {
         AudioSource _audioSource;
-        
+
+        public bool IsPlaying => _audioSource.isPlaying;
         private void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
@@ -15,6 +16,7 @@ namespace UdemyProject3.Controller
 
         public void SetClip(AudioClip clip)
         {
+            if (clip == _audioSource.clip) return;
             _audioSource.clip = clip;
         }
 

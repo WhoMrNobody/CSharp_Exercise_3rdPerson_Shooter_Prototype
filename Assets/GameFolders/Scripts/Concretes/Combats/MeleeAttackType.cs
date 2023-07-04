@@ -17,7 +17,6 @@ namespace UdemyProject3.Combats
         {
             _transformObject = transformObject;
             _attackSO = attackSO;
-            SoundManager.Instance.SoundControllers[2].SetClip(_attackSO.AudioClip);
         }
         public void AttackAction()
         {
@@ -32,7 +31,7 @@ namespace UdemyProject3.Combats
                 }
             }
 
-            SoundManager.Instance.MeleeAttackSound(_transformObject.position);
+            SoundManager.Instance.MeleeAttackSound(_attackSO.AudioClip, _transformObject.position);
         }
 
     }

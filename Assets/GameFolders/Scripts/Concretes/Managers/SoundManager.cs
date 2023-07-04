@@ -11,7 +11,6 @@ namespace UdemyProject3.Managers
         [SerializeField] AudioClip _audioClip;
         SoundController[] _soundControllers;
 
-        public SoundController[] SoundControllers => _soundControllers;
         void Awake()
         {
             SetSingletonThisGameObject(this);
@@ -24,14 +23,22 @@ namespace UdemyProject3.Managers
             _soundControllers[0].PlaySound(Vector3.zero);
         }
 
-        public void RangeAttackSound(Vector3 soundPlayLocation)
+        public void RangeAttackSound(AudioClip audioClip,Vector3 soundPlayLocation)
         {
             _soundControllers[1].PlaySound(soundPlayLocation);
+            _soundControllers[1].SetClip(audioClip);
         }
 
-        public void MeleeAttackSound(Vector3 soundPlayLocation)
+        public void MeleeAttackSound(AudioClip audioClip,Vector3 soundPlayLocation)
         {
-            _soundControllers[2].PlaySound(soundPlayLocation);
+            for (int i = 2; i < _soundControllers.Length; i++)
+            {
+                if (_soundControllers[i].IsPlaying) continue;
+
+                _soundControllers[i].SetClip(audioClip);
+                _soundControllers[i].PlaySound(soundPlayLocation);
+                break;
+            }
         }
     }
 

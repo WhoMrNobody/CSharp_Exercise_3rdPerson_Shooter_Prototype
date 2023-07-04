@@ -18,7 +18,6 @@ namespace UdemyProject3.Combats
         {
             _mainCamera = transformObject.GetComponent<Camera>();
             _attackSO = attackSO;
-            SoundManager.Instance.SoundControllers[1].SetClip(_attackSO.AudioClip);
         }
         public void AttackAction()
         {
@@ -33,7 +32,7 @@ namespace UdemyProject3.Combats
                 }
             }
 
-            SoundManager.Instance.RangeAttackSound(_mainCamera.transform.position);
+            SoundManager.Instance.RangeAttackSound(_attackSO.AudioClip,_mainCamera.transform.position);
         }
 
     }
