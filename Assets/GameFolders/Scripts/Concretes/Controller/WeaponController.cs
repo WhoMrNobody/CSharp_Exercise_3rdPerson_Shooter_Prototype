@@ -12,23 +12,21 @@ namespace UdemyProject3.Controller
     {
         
         [SerializeField] bool _canFire;
-        [SerializeField] Transform _transformObject;
-        [SerializeField] AttackSO _attackSO;
 
         float _currentTime = 0f;
         IAttackType _attackType;
 
-        public AttackSO attackSO => _attackSO;
+        public AnimatorOverrideController AnimatorOverrideController => _attackType.AttackInfo.AnimOverrideController;
 
         void Awake()
         {
-            _attackType = _attackSO.GetAttackType(_transformObject);
+            _attackType = GetComponent<IAttackType>();
         }
         void Update()
         {
             _currentTime += Time.deltaTime;
 
-            _canFire = _currentTime > _attackSO.AttackMaxDelay;
+            _canFire = _currentTime > _attackType.AttackInfo.AttackMaxDelay;
 
         }
 

@@ -6,15 +6,10 @@ using UnityEngine;
 
 namespace UdemyProject3.ScritableObject
 {
-    enum AttackTypeEnum : byte
-    {
-        Range, Melee
-    }
 
     [CreateAssetMenu(fileName ="Attack Info", menuName = "Combat/Attack Info/Create New", order = 51)]
     public class AttackSO : ScriptableObject
     {
-        [SerializeField] AttackTypeEnum _attackType;
         [SerializeField] float _weaponRange = 1f;
         [SerializeField] float _attackMaxDelay = 2.5f;
         [SerializeField] int _damage = 10;
@@ -29,17 +24,6 @@ namespace UdemyProject3.ScritableObject
         public AnimatorOverrideController AnimOverrideController => _animOverrideController;
         public AudioClip AudioClip => _audioClip;
 
-        public IAttackType GetAttackType(Transform transform)
-        {
-            if(_attackType == AttackTypeEnum.Range)
-            {
-                return new RangeAttackType(transform, this);
-            }
-            else
-            {
-                return new MeleeAttackType(transform, this);
-            }
-        }
     }
 }
 

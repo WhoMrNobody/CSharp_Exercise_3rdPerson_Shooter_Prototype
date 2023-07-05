@@ -45,7 +45,7 @@ public class InventoryController : MonoBehaviour
             if(CurrentWeapon == weaponController)
             {
                 weaponController.gameObject.SetActive(true);
-                _animator.runtimeAnimatorController = CurrentWeapon.attackSO.AnimOverrideController;
+                _animator.runtimeAnimatorController = CurrentWeapon.AnimatorOverrideController;
             }
             else
             {
